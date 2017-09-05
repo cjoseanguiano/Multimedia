@@ -20,8 +20,8 @@ public class MainSingleAlbumActivity extends AppCompatActivity implements TypeAl
     private static final String TAG = MainSingleAlbumActivity.class.getSimpleName();
     private static final String EXTRA_BUCKET = "extra_bucket";
     private static final String EXTRA_TYPE_ALBUM = "extra_type_album";
-    private static final String EXTRA_TYPE_BUCKET = "extra_type_bucket";
-    private static final String EXTRA_TYPE_FILE = "extra_type_file";
+    public static final String EXTRA_TYPE_BUCKET = "extra_type_bucket";
+    public static final String EXTRA_TYPE_FILE = "extra_type_file";
     public static final String EXTRA_RESULT_SELECTED_PICTURE = "extra_result_selected_picture";
     public static final String EXTRA_RESULT_SELECTED_VIDEO = "extra_result_selected_video";
 

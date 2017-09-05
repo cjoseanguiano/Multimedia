@@ -79,7 +79,7 @@
                     <TextView
                         android:id="@+id/album_media_label"
                         android:layout_width="wrap_content"
-                        android:text="@string/about"
+                        android:text="@string/media"
                         android:layout_height="wrap_content"
                         android:maxLines="1"
                         android:textColor="@android:color/background_dark"

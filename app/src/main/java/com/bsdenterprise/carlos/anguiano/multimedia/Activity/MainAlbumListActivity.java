@@ -20,7 +20,7 @@ public class MainAlbumListActivity extends AppCompatActivity implements PhotoAlb
     public static final String TAG = MainAlbumListActivity.class.getSimpleName();
 
     public static final String EXTRA_NAME = "sendUser";//Displays the user Name
-    private static final String EXTRA_JID = "extra_jid";//Displays the user Jid
+    public static final String EXTRA_JID = "extra_jid";//Displays the user Jid
     public static final String EXTRA_RESULT_SELECTED_ALBUM = "selected_media_album";//Send album result
 
     public static final String EXTRA_BUCKET = "extra_bucket";

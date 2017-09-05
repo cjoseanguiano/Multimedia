@@ -4,4 +4,8 @@
     <string name="image">Image</string>
     <string name="titleMultimedia">Sent to %1$s</string>
     <string name="video">Video</string>
+    <string name="OK">OK</string>
+    <string name="about"></string>
+    <string name="media">Media</string>
+    <string name="msg_type_your_message">Write your message…</string>
 </resources>
