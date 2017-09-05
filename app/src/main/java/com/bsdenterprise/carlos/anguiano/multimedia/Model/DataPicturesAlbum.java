@@ -40,11 +40,11 @@ public class DataPicturesAlbum {
         this.imagePaths = imagePaths;
     }
 
-    ArrayList<String> getPathSize() {
+    public ArrayList<String> getPathSize() {
         return pathSize;
     }
 
-    void setPathSize(ArrayList<String> pathSize) {
+    public void setPathSize(ArrayList<String> pathSize) {
         this.pathSize = pathSize;
     }
 }

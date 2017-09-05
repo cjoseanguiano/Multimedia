@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.TabLayout;
+import android.text.LoginFilter;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -24,6 +25,7 @@ public class MainAlbumListActivity extends AppCompatActivity implements PhotoAlb
     private static final String EXTRA_BUCKET = "extra_bucket";
     private static final String EXTRA_TYPE_ALBUM = "extra_type_album";
     private static final String BACK_PRESSED = "back_pressed";
+    public static final String EXTRA_RESULT_SELECTED_ALBUM = "selected_media_album";
     private String body;
     private boolean backPressed = false;
     private static final String EXTRA_BACK_SELECT = "extra_back_select";
@@ -104,6 +106,24 @@ public class MainAlbumListActivity extends AppCompatActivity implements PhotoAlb
     @Override
     public void onMediaSelected(String message, String type, boolean backPressed) {
         Log.i(TAG, "onMediaSelected: ");
+        if (!backPressed) {
+            Intent mIntent = new Intent();
+            mIntent.putExtra(String.valueOf(EXTRA_RESULT_SELECTED_ALBUM), message);
+            mIntent.putExtra(EXTRA_TYPE_ALBUM, "" + type);
+            mIntent.putExtra(EXTRA_BUCKET, message);
+            mIntent.putExtra(EXTRA_BACK_SELECT, false);
+            setResult(RESULT_OK, mIntent);
+            finish();
+        } else {
+            Intent mIntent = new Intent();
+            mIntent.putExtra(String.valueOf(EXTRA_RESULT_SELECTED_ALBUM), message);
+            mIntent.putExtra(EXTRA_TYPE_ALBUM, "" + type);
+            mIntent.putExtra(EXTRA_BUCKET, message);
+            mIntent.putExtra(EXTRA_BACK_SELECT, true);
+            setResult(RESULT_OK, mIntent);
+            finish();
+        }
+
     }
 
 }
