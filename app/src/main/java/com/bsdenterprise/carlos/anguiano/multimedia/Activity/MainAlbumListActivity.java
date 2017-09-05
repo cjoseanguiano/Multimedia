@@ -21,11 +21,11 @@ public class MainAlbumListActivity extends AppCompatActivity implements PhotoAlb
 
     public static final String EXTRA_NAME = "sendUser";//Displays the user Name
     private static final String EXTRA_JID = "extra_jid";//Displays the user Jid
+    public static final String EXTRA_RESULT_SELECTED_ALBUM = "selected_media_album";//Send album result
 
     private static final String EXTRA_BUCKET = "extra_bucket";
     private static final String EXTRA_TYPE_ALBUM = "extra_type_album";
     private static final String BACK_PRESSED = "back_pressed";
-    public static final String EXTRA_RESULT_SELECTED_ALBUM = "selected_media_album";
     private String body;
     private boolean backPressed = false;
     private static final String EXTRA_BACK_SELECT = "extra_back_select";

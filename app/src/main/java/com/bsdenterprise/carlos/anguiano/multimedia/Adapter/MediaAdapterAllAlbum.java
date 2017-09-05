@@ -1,4 +1,4 @@
-package com.bsdenterprise.carlos.anguiano.multimedia.Model;
+package com.bsdenterprise.carlos.anguiano.multimedia.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.Interface.MediaAdapterAllAlbumClickListener;
+import com.bsdenterprise.carlos.anguiano.multimedia.Model.DataPicturesAlbum;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;

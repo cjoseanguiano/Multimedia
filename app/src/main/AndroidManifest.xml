@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainAlbumListActivity"></activity>
+        <activity android:name=".Activity.MainAlbumListActivity" />
+        <activity android:name=".Activity.MainSingleAlbumActivity"></activity>
     </application>
 
 </manifest>

@@ -20,7 +20,7 @@ import android.view.ViewGroup;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.Interface.MediaAdapterAllAlbumClickListener;
 import com.bsdenterprise.carlos.anguiano.multimedia.Model.DataPicturesAlbum;
-import com.bsdenterprise.carlos.anguiano.multimedia.Model.MediaAdapterAllAlbum;
+import com.bsdenterprise.carlos.anguiano.multimedia.Adapter.MediaAdapterAllAlbum;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bsdenterprise.carlos.anguiano.multimedia.Utils.GridRecyclerView;
 

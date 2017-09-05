@@ -11,10 +11,16 @@ import android.widget.Button;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 
+import static com.bsdenterprise.carlos.anguiano.multimedia.Activity.MainAlbumListActivity.EXTRA_RESULT_SELECTED_ALBUM;
+
 public class HomeActivity extends AppCompatActivity {
 
-    private static final int RESULT_LOAD_IMAGE = 3;
     private static final String TAG = HomeActivity.class.getSimpleName();
+    private static final int RESULT_LOAD_IMAGE = 3;//Result Album
+    private static final String EXTRA_BUCKET = "extra_bucket";
+    private static final String EXTRA_TYPE_ALBUM = "extra_type_album";
+    private static final String EXTRA_BACK_SELECT = "extra_back_select";
+
     private Button button;
 
     @Override
@@ -37,7 +43,19 @@ public class HomeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
             Log.i(TAG, "onActivityResult: ");
-        }
+            if (data.hasExtra(EXTRA_RESULT_SELECTED_ALBUM)) {
+                Intent intent = new Intent(this, MainSingleAlbumActivity.class);
+                intent.putExtra(EXTRA_BUCKET, data.getStringExtra(EXTRA_BUCKET));
+                intent.putExtra(EXTRA_TYPE_ALBUM, data.getStringExtra(EXTRA_TYPE_ALBUM));
+                intent.putExtra(EXTRA_BACK_SELECT, data.getBooleanExtra(EXTRA_BACK_SELECT, true));
+                startActivityForResult(intent, 12);
+            } else {
+                Log.i(TAG, "onActivityResult: ");
+            }
 
+        }
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_CANCELED) {
+            Log.i(TAG, "onActivityResult: ");
+        }
     }
 }
