@@ -45,9 +45,9 @@ public class HomeActivity extends AppCompatActivity {
             Log.i(TAG, "onActivityResult: ");
             if (data.hasExtra(EXTRA_RESULT_SELECTED_ALBUM)) {
                 Intent intent = new Intent(this, MainSingleAlbumActivity.class);
-                intent.putExtra(EXTRA_BUCKET, data.getStringExtra(EXTRA_BUCKET));
-                intent.putExtra(EXTRA_TYPE_ALBUM, data.getStringExtra(EXTRA_TYPE_ALBUM));
-                intent.putExtra(EXTRA_BACK_SELECT, data.getBooleanExtra(EXTRA_BACK_SELECT, true));
+                intent.putExtra(MainAlbumListActivity.EXTRA_BUCKET, data.getStringExtra(EXTRA_BUCKET));
+                intent.putExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM, data.getStringExtra(EXTRA_TYPE_ALBUM));
+                intent.putExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, data.getBooleanExtra(EXTRA_BACK_SELECT, true));
                 startActivityForResult(intent, 12);
             } else {
                 Log.i(TAG, "onActivityResult: ");

@@ -5,4 +5,8 @@
     <string name="titleMultimedia">Sent to %1$s</string>
     <string name="video">Video</string>
     <string name="about">about</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="OK">OK</string>
 </resources>

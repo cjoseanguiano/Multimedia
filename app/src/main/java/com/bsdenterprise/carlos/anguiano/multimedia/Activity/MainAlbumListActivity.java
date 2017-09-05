@@ -23,12 +23,12 @@ public class MainAlbumListActivity extends AppCompatActivity implements PhotoAlb
     private static final String EXTRA_JID = "extra_jid";//Displays the user Jid
     public static final String EXTRA_RESULT_SELECTED_ALBUM = "selected_media_album";//Send album result
 
-    private static final String EXTRA_BUCKET = "extra_bucket";
-    private static final String EXTRA_TYPE_ALBUM = "extra_type_album";
+    public static final String EXTRA_BUCKET = "extra_bucket";
+    public static final String EXTRA_TYPE_ALBUM = "extra_type_album";
     private static final String BACK_PRESSED = "back_pressed";
     private String body;
     private boolean backPressed = false;
-    private static final String EXTRA_BACK_SELECT = "extra_back_select";
+    public static final String EXTRA_BACK_SELECT = "extra_back_select";
     private String label_Photo;
     private String label_Video;
 
