@@ -21,7 +21,7 @@ import com.bignerdranch.android.multiselector.MultiSelector;
 import com.bsdenterprise.carlos.anguiano.multimedia.Activity.MainAlbumListActivity;
 import com.bsdenterprise.carlos.anguiano.multimedia.Interface.MediaSingleClicked;
 import com.bsdenterprise.carlos.anguiano.multimedia.Model.DataPicture;
-import com.bsdenterprise.carlos.anguiano.multimedia.Model.MediaAdapterSingleAlbum;
+import com.bsdenterprise.carlos.anguiano.multimedia.Adapter.MediaAdapterSingleAlbum;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bsdenterprise.carlos.anguiano.multimedia.Utils.GridRecyclerView;
 

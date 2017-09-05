@@ -1,13 +1,26 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bsdenterprise.carlos.anguiano.multimedia.Fragment.VideoAlbumFragment">
+    android:background="@drawable/item_background_holo_light"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <com.bsdenterprise.carlos.anguiano.multimedia.Utils.GridRecyclerView
+        android:id="@+id/grid_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/video" />
+        android:clipToPadding="false"
+        android:columnWidth="125dp">
 
-</FrameLayout>
+    </com.bsdenterprise.carlos.anguiano.multimedia.Utils.GridRecyclerView>
+
+    <ProgressBar
+        android:id="@+id/xpxrogressBar"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="visible" />
+
+</RelativeLayout>

@@ -22,7 +22,8 @@ public class MainSingleAlbumActivity extends AppCompatActivity implements TypeAl
     private static final String EXTRA_TYPE_ALBUM = "extra_type_album";
     private static final String EXTRA_TYPE_BUCKET = "extra_type_bucket";
     private static final String EXTRA_TYPE_FILE = "extra_type_file";
-    public static final String EXTRA_RESULT_SELECTED_MEDIA = "extra_result_selected_media";
+    public static final String EXTRA_RESULT_SELECTED_PICTURE = "extra_result_selected_picture";
+    public static final String EXTRA_RESULT_SELECTED_VIDEO = "extra_result_selected_video";
 
     private ArrayList<String> path_On = new ArrayList<>();
     private String bucketPhotoViewer;
@@ -42,7 +43,7 @@ public class MainSingleAlbumActivity extends AppCompatActivity implements TypeAl
         setSupportActionBar(toolbar);
 
         Bundle bundle = getIntent().getExtras();
-        path_On = bundle.getStringArrayList(EXTRA_RESULT_SELECTED_MEDIA);
+        path_On = bundle.getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
         typeOfSelect = getIntent().getExtras().getString(EXTRA_TYPE_ALBUM);
         typeBucket = getIntent().getExtras().getString(EXTRA_BUCKET);
         bucketPhotoViewer = getIntent().getStringExtra(EXTRA_TYPE_BUCKET);
@@ -99,15 +100,15 @@ public class MainSingleAlbumActivity extends AppCompatActivity implements TypeAl
         Intent mIntent = new Intent();
         if (mediaList != null) {
             Log.i(TAG, "onMediaSelected: ");
-            /*if (v) {
-                mIntent.putStringArrayListExtra(String.valueOf(EXTRA_RESULT_SELECTED_MEDIA), mediaList);
+            if (v) {
+                mIntent.putStringArrayListExtra(String.valueOf(EXTRA_RESULT_SELECTED_PICTURE), mediaList);
             } else {
-                mIntent.putStringArrayListExtra(String.valueOf(EXTRA_RESULT_SELECTED_MEDIA_VIDEO), mediaList);
+                mIntent.putStringArrayListExtra(String.valueOf(EXTRA_RESULT_SELECTED_VIDEO), mediaList);
             }
             mIntent.putExtra(EXTRA_TYPE_BUCKET, "" + typeAlbum);
             mIntent.putExtra(EXTRA_TYPE_FILE, "" + typeFile);
             setResult(RESULT_OK, mIntent);
-            finish();*/
+            finish();
         }
     }
 }

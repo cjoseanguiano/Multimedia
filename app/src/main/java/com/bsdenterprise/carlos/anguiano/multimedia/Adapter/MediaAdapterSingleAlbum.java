@@ -1,4 +1,4 @@
-package com.bsdenterprise.carlos.anguiano.multimedia.Model;
+package com.bsdenterprise.carlos.anguiano.multimedia.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import com.bignerdranch.android.multiselector.MultiSelector;
 import com.bignerdranch.android.multiselector.SwappingHolder;
 import com.bsdenterprise.carlos.anguiano.multimedia.Interface.MediaSingleClicked;
+import com.bsdenterprise.carlos.anguiano.multimedia.Model.DataPicture;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DecodeFormat;
@@ -236,9 +237,6 @@ public class MediaAdapterSingleAlbum extends RecyclerView.Adapter<MediaAdapterSi
             DataPicture message = itemList.get(i);
             try {
                 if (message.getFileType().equalsIgnoreCase("video")) {
-//                    Bitmap bmThumbnail = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(message.getFilePath(), MediaStore.Video.Thumbnails.FULL_SCREEN_KIND), MAX_WIDTH, MAX_HEIGHT);
-//                    Uri a = getImageUri(context, bmThumbnail);
-
                     showGlide(mediaListRowHolder, message);
 
                 } else {

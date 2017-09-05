@@ -20,7 +20,7 @@ public class DataPicture implements Serializable {
         this.filePath = filePath;
     }
 
-    String getFileType() {
+    public String getFileType() {
         return fileType;
     }
 
