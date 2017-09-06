@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 public class ShowMediaAdapter extends PagerAdapter {
     private ArrayList<String> paths = new ArrayList<>();
+    private LayoutInflater inflater;
     private final Activity _activity;
 
     @Override
@@ -37,10 +38,11 @@ public class ShowMediaAdapter extends PagerAdapter {
         return 0;
     }
 
-    public ShowMediaAdapter(Activity activity,
-                              ArrayList<String> imagePaths) {
+    public ShowMediaAdapter(Activity activity,ArrayList<String> imagePaths) {
         this._activity = activity;
         this.paths = imagePaths;
+        this.inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
     }
 
     @Override
@@ -66,9 +68,10 @@ public class ShowMediaAdapter extends PagerAdapter {
         final ImageButton btnDownload;
         final ProgressBar progressBar;
         TextView messageTextView;
-
-        LayoutInflater inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);
+//https://stackoverflow.com/questions/33818873/setting-images-from-url-in-viewpager-android/33819252
+//        inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);
 
         imgDisplay = (TouchImageView) viewLayout.findViewById(R.id.imgDisplay);
         messageTextView = (TextView) viewLayout.findViewById(R.id.photoDescription);

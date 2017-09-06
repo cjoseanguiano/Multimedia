@@ -199,8 +199,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                viewPager.setCurrentItem(i);
-                adapter.getItemPosition(i);
+                viewpagerMedia.setCurrentItem(i);
             }
         };
     }
