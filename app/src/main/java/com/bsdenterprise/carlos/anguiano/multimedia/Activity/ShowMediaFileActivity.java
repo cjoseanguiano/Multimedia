@@ -1,6 +1,9 @@
 package com.bsdenterprise.carlos.anguiano.multimedia.Activity;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
@@ -15,11 +18,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.Adapter.ShowMediaAdapter;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
+import com.bumptech.glide.Glide;
 import com.mikepenz.iconics.typeface.ITypeface;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static com.bsdenterprise.carlos.anguiano.multimedia.Activity.MainSingleAlbumActivity.EXTRA_RESULT_SELECTED_PICTURE;
@@ -38,15 +44,27 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
     private String newPath;
     private FloatingActionButton send;
     private ImageView imageView;
+    private BitmapFactory.Options options;
+    private ArrayList<String> images = new ArrayList<>();
+    private ArrayList<String> resourceFile = new ArrayList<>();
+    private LinearLayout thumbnailsContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_media_file);
         Log.i(TAG, "onCreate: ");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
         startView();
         initToolbar();
         showIntent();
+
+        setImagesData();
+        inflateThumbnails();
+
 
         adapter = new ShowMediaAdapter(this, mImagePath);
 
@@ -163,6 +181,7 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         addPicture = (ImageView) findViewById(R.id.imageView5);
         photoDescription = (EditText) findViewById(R.id.photoDescription);
         send = (FloatingActionButton) findViewById(R.id.fab);
+        thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
         disableEditText(photoDescription);
 
     }
@@ -185,5 +204,29 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         imageView.setLayoutParams(params);
         frameLayoutV.addView(imageView);
 
+    }
+
+    private void inflateThumbnails() {
+        for (int i = 0; i < images.size(); i++) {
+            View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
+            ImageView one = imageLayout.findViewById(R.id.img_thumb);
+            options = new BitmapFactory.Options();
+            options.inSampleSize = 3;
+            options.inDither = false;
+
+
+            Uri uri = Uri.parse(resourceFile.get(i));
+            Glide.with(this)
+                    .load(new File(uri.getPath()))
+                    .into(one);
+
+            thumbnailsContainer.addView(imageLayout);
+        }
+    }
+
+    private void setImagesData() {
+        for (int i = 0; i < resourceFile.size(); i++) {
+            images.add(resourceFile.get(i));
+        }
     }
 }
