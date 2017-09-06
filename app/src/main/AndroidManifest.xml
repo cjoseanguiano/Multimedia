@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".Activity.MainAlbumListActivity" />
         <activity android:name=".Activity.MainSingleAlbumActivity" />
-        <activity android:name=".Activity.PhotoViewerActivity" />
+        <!--<activity android:name=".Activity.PhotoViewerActivity" />-->
         <activity android:name=".Activity.ShowMediaFileActivity"></activity>
     </application>
 
