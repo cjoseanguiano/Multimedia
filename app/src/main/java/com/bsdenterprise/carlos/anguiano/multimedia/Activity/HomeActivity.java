@@ -73,8 +73,8 @@ public class HomeActivity extends AppCompatActivity {
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
                     Log.i(TAG, "onActivityResult: ");
 
-                    Intent i = new Intent(this, PhotoViewerActivity.class);
-                    i.putExtra(PhotoViewerActivity.EXTRA_MEDIA_PATHS, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_PICTURE));
+                    Intent i = new Intent(this, ShowMediaFileActivity.class);
+                    i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_PICTURE, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_PICTURE));
                     i.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
                     i.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
                     startActivityForResult(i, 80);

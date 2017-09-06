@@ -22,11 +22,8 @@ import android.widget.ImageView;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 import static com.bsdenterprise.carlos.anguiano.multimedia.Activity.MainSingleAlbumActivity.EXTRA_RESULT_SELECTED_PICTURE;
 
