@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <devexchanges.info.imagegallerybyviewpager.TouchImageView
+    <com.bsdenterprise.carlos.anguiano.multimedia.Adapter.TouchImageView
         android:id="@+id/imgDisplay"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

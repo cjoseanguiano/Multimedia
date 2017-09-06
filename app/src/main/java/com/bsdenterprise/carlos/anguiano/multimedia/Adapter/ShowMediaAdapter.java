@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * For more info contact: c.joseanguiano@gmail.com
  */
 
-class ShowMediaAdapter extends PagerAdapter {
+public class ShowMediaAdapter extends PagerAdapter {
     private ArrayList<String> paths = new ArrayList<>();
     private final Activity _activity;
 
@@ -38,7 +38,7 @@ class ShowMediaAdapter extends PagerAdapter {
     }
 
     public ShowMediaAdapter(Activity activity,
-                            ArrayList<String> imagePaths) {
+                              ArrayList<String> imagePaths) {
         this._activity = activity;
         this.paths = imagePaths;
     }
@@ -70,11 +70,11 @@ class ShowMediaAdapter extends PagerAdapter {
         LayoutInflater inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);
 
-        imgDisplay = viewLayout.findViewById(R.id.imgDisplay);
-        messageTextView = viewLayout.findViewById(R.id.photoDescription);
-        btnPlay = viewLayout.findViewById(R.id.btnPlay);
-        btnDownload = viewLayout.findViewById(R.id.btnDownload);
-        progressBar = viewLayout.findViewById(R.id.progressBar);
+        imgDisplay = (TouchImageView) viewLayout.findViewById(R.id.imgDisplay);
+        messageTextView = (TextView) viewLayout.findViewById(R.id.photoDescription);
+        btnPlay = (ImageButton) viewLayout.findViewById(R.id.btnPlay);
+        btnDownload = (ImageButton) viewLayout.findViewById(R.id.btnDownload);
+        progressBar = (ProgressBar) viewLayout.findViewById(R.id.progressBar);
 
         messageTextView.setVisibility(View.GONE);
         btnPlay.setVisibility(View.GONE);
