@@ -58,6 +58,11 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
         resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
         resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
+        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
+
         startView();
         initToolbar();
         showIntent();
@@ -171,7 +176,10 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
     private void showIntent() {
         Log.i(TAG, "showIntent: ");
         if (getIntent().hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
-            mImagePath = getIntent().getExtras().getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
+            mImagePath.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
+            mImagePath.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
+            mImagePath.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
+//            mImagePath = getIntent().getExtras().getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
         }
     }
 
@@ -182,7 +190,7 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         photoDescription = (EditText) findViewById(R.id.photoDescription);
         send = (FloatingActionButton) findViewById(R.id.fab);
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
-        disableEditText(photoDescription);
+//        disableEditText(photoDescription);
 
     }
 
@@ -196,20 +204,11 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         }
     }
 
-    public void createImageViewNew() {
-        FrameLayout frameLayoutV = (FrameLayout) findViewById(R.id.fragmentContainer);
-        imageView = new ImageView(this);
-        CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT);
-        imageView.setId(R.id.viewImageViewNew);
-        imageView.setLayoutParams(params);
-        frameLayoutV.addView(imageView);
-
-    }
-
     private void inflateThumbnails() {
         for (int i = 0; i < images.size(); i++) {
             View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
             ImageView one = imageLayout.findViewById(R.id.img_thumb);
+            one.setOnClickListener(onChagePageClickListener(i));
             options = new BitmapFactory.Options();
             options.inSampleSize = 3;
             options.inDither = false;
@@ -222,6 +221,16 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
 
             thumbnailsContainer.addView(imageLayout);
         }
+    }
+
+    private View.OnClickListener onChagePageClickListener(final int i) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(i);
+
+            }
+        };
     }
 
     private void setImagesData() {
