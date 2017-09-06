@@ -9,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -23,21 +22,17 @@ import android.widget.LinearLayout;
 import com.bsdenterprise.carlos.anguiano.multimedia.Adapter.ShowMediaAdapter;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bumptech.glide.Glide;
-import com.mikepenz.iconics.typeface.ITypeface;
 
 import java.io.File;
 import java.util.ArrayList;
 
-import static com.bsdenterprise.carlos.anguiano.multimedia.Activity.MainSingleAlbumActivity.EXTRA_RESULT_SELECTED_PICTURE;
-
-public class ShowMediaFileActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class ShowMediaFileActivity extends AppCompatActivity {
 
     public static final String EXTRA_RESULT_SELECTED_PICTURE = "extra_result_selected_picture";
     private static final String TAG = ShowMediaFileActivity.class.getSimpleName();
     private ArrayList<String> mImagePath = new ArrayList<>();
     private Toolbar toolbar;
     private ImageView addPicture;
-    private ViewPager viewPager;
     private ShowMediaAdapter adapter;
     private int currentPage;
     private EditText photoDescription;
@@ -48,6 +43,7 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
     private ArrayList<String> images = new ArrayList<>();
     private ArrayList<String> resourceFile = new ArrayList<>();
     private LinearLayout thumbnailsContainer;
+    private ViewPager viewpagerMedia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +68,7 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
 
 
         adapter = new ShowMediaAdapter(this, mImagePath);
+        viewpagerMedia.setAdapter(adapter);
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < mImagePath.size(); i++) {
@@ -80,7 +77,7 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         newPath = stringBuilder.toString();
 
         if (newPath.contains(".jpg") || (newPath.contains(".png")) || (newPath.contains(".jpeg"))) {
-            createViewPager();
+//            viewPager.setAdapter(adapter);
         }
 
         addPicture.setOnClickListener(new View.OnClickListener() {
@@ -103,16 +100,6 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         Log.i(TAG, "sendPhoto: ");
     }
 
-    public void createViewPager() {
-        FrameLayout frameLayoutI = (FrameLayout) findViewById(R.id.fragmentContainer);
-        viewPager = new ViewPager(this);
-        CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT);
-        viewPager.setId(R.id.viewPagerNew);
-        viewPager.setLayoutParams(params);
-        frameLayoutI.addView(viewPager);
-        viewPager.setAdapter(adapter);
-    }
-
     private void disableEditText(EditText editText) {
         editText.setFocusable(false);
         editText.setEnabled(false);
@@ -121,22 +108,6 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         editText.setTextColor(Color.TRANSPARENT);
         editText.setHintTextColor(Color.TRANSPARENT);
         editText.setBackgroundColor(Color.TRANSPARENT);
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        currentPage = position;
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        currentPage = position;
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
     }
 
     @Override
@@ -190,6 +161,7 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         photoDescription = (EditText) findViewById(R.id.photoDescription);
         send = (FloatingActionButton) findViewById(R.id.fab);
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
+        viewpagerMedia = (ViewPager) findViewById(R.id.viewpagerMedia);
 //        disableEditText(photoDescription);
 
     }
@@ -227,8 +199,8 @@ public class ShowMediaFileActivity extends AppCompatActivity implements ViewPage
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewPager.setCurrentItem(i);
-
+//                viewPager.setCurrentItem(i);
+                adapter.getItemPosition(i);
             }
         };
     }
