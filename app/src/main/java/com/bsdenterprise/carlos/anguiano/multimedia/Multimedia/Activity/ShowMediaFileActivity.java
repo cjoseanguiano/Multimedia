@@ -114,9 +114,9 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         menu.clear();
-        MenuItem item = menu.add(Menu.NONE, R.id.crop_image_menu_crop, Menu.NONE, R.string.crop_image_menu_crop);
+ /*       MenuItem item = menu.add(Menu.NONE, R.id.crop_image_menu_crop, Menu.NONE, R.string.crop_image_menu_crop);
         item.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        item.setIcon(R.drawable.crop);
+        item.setIcon(R.drawable.crop);*/
         return true;
     }
 
@@ -267,17 +267,5 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         super.onPause();
         Log.i(TAG, "onPause: ");
         thumbnailsContainer.removeAllViews();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i(TAG, "onDestroy: ");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i(TAG, "onRestart: ");
     }
 }
