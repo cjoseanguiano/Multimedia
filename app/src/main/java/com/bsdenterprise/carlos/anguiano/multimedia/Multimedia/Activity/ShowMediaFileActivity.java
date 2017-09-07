@@ -217,6 +217,10 @@ public class ShowMediaFileActivity extends AppCompatActivity {
                 }
             }
         }
+        if (requestCode == 20 && resultCode == Activity.RESULT_CANCELED) {
+            Log.i(TAG, "onActivityResult: ");
+            onBackPressed();
+        }
     }
 
 
