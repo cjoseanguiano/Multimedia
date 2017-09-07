@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".Multimedia.Activity.MainAlbumListActivity" />
         <activity android:name=".Multimedia.Activity.MainSingleAlbumActivity" />
-        <!-- <activity android:name=".Activity.PhotoViewerActivity" /> -->
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".Multimedia.Activity.ShowMediaFileActivity" />
         <activity android:name=".VideoPlayer.Activity.VideoPlayerActivity"></activity>
     </application>

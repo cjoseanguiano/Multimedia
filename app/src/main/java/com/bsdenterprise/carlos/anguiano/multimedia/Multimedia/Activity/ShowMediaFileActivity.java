@@ -51,10 +51,11 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     private ImageView imageView;
     private BitmapFactory.Options options;
     private LinearLayout thumbnailsContainer;
-    private ViewPager viewpagerMedia;
+    //    private ViewPager viewpagerMedia;
     private String typeBucket;
     private String typeFile;
     private int position;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,6 @@ public class ShowMediaFileActivity extends AppCompatActivity {
 
 
         adapter = new ShowMediaAdapter(this, mImagePath);
-        viewpagerMedia.setAdapter(adapter);
 
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < mImagePath.size(); i++) {
@@ -78,7 +78,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         newPath = stringBuilder.toString();
 
         if (newPath.contains(".jpg") || (newPath.contains(".png")) || (newPath.contains(".jpeg"))) {
-//            viewPager.setAdapter(adapter);
+            createViewPager();
         }
 
         addPicture.setOnClickListener(new View.OnClickListener() {
@@ -133,8 +133,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
             case R.id.crop_image_menu_crop:
                 final int[] chatMessage = new int[1];
                 chatMessage[0] = adapter.getItemPosition(currentPage);
-//                adapter.removeItem(currentPage);
-                position = viewpagerMedia.getCurrentItem();
+                position = viewPager.getCurrentItem();
 
                 String a = adapter.getCurrentItem(position);
                 CropImage.activity(Uri.fromFile(new File(a)))
@@ -175,7 +174,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         photoDescription = (EditText) findViewById(R.id.photoDescription);
         send = (FloatingActionButton) findViewById(R.id.fab);
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
-        viewpagerMedia = (ViewPager) findViewById(R.id.viewpagerMedia);
+//        viewpagerMedia = (ViewPager) findViewById(R.id.viewpagerMedia);
         disableEditText(photoDescription);
 
     }
@@ -213,7 +212,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                viewpagerMedia.setCurrentItem(i);
+                viewPager.setCurrentItem(i);
             }
         };
     }
@@ -226,12 +225,13 @@ public class ShowMediaFileActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK && mImagePath.size() != 0) {
 
                 try {
-                    viewpagerMedia.setAdapter(null);
+                    viewPager.setAdapter(null);
                     Uri resultUri = result.getUri();
                     String newPath = resultUri.getPath();
                     mImagePath.remove(position);
                     mImagePath.add(newPath);
                     adapter = new ShowMediaAdapter(this, mImagePath);
+                    createViewPager();
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -242,7 +242,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         }
         if (requestCode == 20 && resultCode == Activity.RESULT_OK) {
             Log.i(TAG, "onActivityResult: ");
-            viewpagerMedia.setAdapter(null);
+            viewPager.setAdapter(null);
             mImagePath = data.getExtras().getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
             if (mImagePath != null) {
                 StringBuilder stringBuilder = new StringBuilder();
@@ -252,10 +252,20 @@ public class ShowMediaFileActivity extends AppCompatActivity {
                 String newString = stringBuilder.toString();
                 if (newString.contains(".jpg") || (newString.contains(".png")) || (newString.contains(".jpeg"))) {
                     adapter = new ShowMediaAdapter(this, mImagePath);
-                    viewpagerMedia.setAdapter(adapter);
+                    viewPager.setAdapter(adapter);
                 }
             }
         }
+    }
+
+    public void createViewPager() {
+        FrameLayout frameLayoutI = (FrameLayout) findViewById(R.id.fragmentContainer);
+        viewPager = new ViewPager(this);
+        CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT);
+        viewPager.setId(R.id.viewPagerNew);
+        viewPager.setLayoutParams(params);
+        frameLayoutI.addView(viewPager);
+        viewPager.setAdapter(adapter);
     }
 
 }

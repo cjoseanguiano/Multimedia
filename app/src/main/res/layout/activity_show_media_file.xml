@@ -12,18 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--<VideoView
-            android:id="@+id/videoViewx"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />-->
-
-        <android.support.v4.view.ViewPager
+      <!--  <android.support.v4.view.ViewPager
             android:id="@+id/viewpagerMedia"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"/>   -->
 
-        </android.support.v4.view.ViewPager>
     </FrameLayout>
 
 
@@ -41,18 +34,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
             android:clickable="true"
             android:paddingEnd="8dp"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingStart="8dp"
-            android:layout_marginTop="5dp"
             android:src="@drawable/ic_add_to_photos_white" />
 
         <EditText
             android:id="@+id/photoDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/app_name"
@@ -61,7 +55,6 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingStart="16dp"
-            android:layout_marginTop="16dp"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
 
@@ -99,7 +92,6 @@
 
 
     </LinearLayout>
-
 
 
     <android.support.v7.widget.Toolbar
