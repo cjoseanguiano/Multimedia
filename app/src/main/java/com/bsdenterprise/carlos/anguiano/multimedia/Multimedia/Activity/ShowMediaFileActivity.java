@@ -44,30 +44,27 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView addPicture;
     private ShowMediaAdapter adapter;
-    private int currentPage;
     private EditText photoDescription;
     private String newPath;
     private FloatingActionButton send;
-    private ImageView imageView;
     private BitmapFactory.Options options;
     private LinearLayout thumbnailsContainer;
-    //    private ViewPager viewpagerMedia;
     private String typeBucket;
     private String typeFile;
     private int position;
     private ViewPager viewPager;
+    private int currentPage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_media_file);
         Log.i(TAG, "onCreate: ");
-
         startView();
         initToolbar();
         showIntent();
         inflateThumbnails();
-
 
         adapter = new ShowMediaAdapter(this, mImagePath);
 
@@ -174,7 +171,6 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         photoDescription = (EditText) findViewById(R.id.photoDescription);
         send = (FloatingActionButton) findViewById(R.id.fab);
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
-//        viewpagerMedia = (ViewPager) findViewById(R.id.viewpagerMedia);
         disableEditText(photoDescription);
 
     }
