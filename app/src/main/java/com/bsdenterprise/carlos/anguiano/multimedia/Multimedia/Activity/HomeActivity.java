@@ -11,6 +11,9 @@ import android.widget.Button;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Activity.VideoPlayerActivity;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainAlbumListActivity.EXTRA_JID;
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainAlbumListActivity.EXTRA_NAME;
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainAlbumListActivity.EXTRA_RESULT_SELECTED_ALBUM;
@@ -89,6 +92,33 @@ public class HomeActivity extends AppCompatActivity {
                     startActivityForResult(videoPlayer, 81);
                 }
             }
+        } else if (requestCode == 81 && resultCode == Activity.RESULT_OK) {
+            if (data.hasExtra(EXTRA_MEDIA_PATHS_VIDEO)) {
+                ArrayList<String> mImagePaths;
+                mImagePaths = data.getExtras().getStringArrayList(EXTRA_MEDIA_PATHS_VIDEO);
+                if (mImagePaths != null) {
+                    Intent i = new Intent(this, ShowMediaFileActivity.class);
+                    i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_VIDEO, mImagePaths);
+                    i.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
+                    i.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
+                    startActivityForResult(i, 81);
+                }
+            } else {
+                ArrayList<String> paths = data.getExtras().getStringArrayList("paths");
+                if (paths == null) {
+                    return;
+                } else {
+                    StringBuffer result = new StringBuffer();
+                    for (int i = 0; i < paths.size(); i++) {
+                        result.append(paths.get(i));
+                    }
+                    String fileString = result.toString();
+                    File file = new File(fileString);
+                    Log.i(TAG, "onActivityResult: ");
+//                    mPresenter.sendVideoMessage(file);
+                }
+            }
+
         }
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_CANCELED) {
             Log.i(TAG, "onActivityResult: ");
