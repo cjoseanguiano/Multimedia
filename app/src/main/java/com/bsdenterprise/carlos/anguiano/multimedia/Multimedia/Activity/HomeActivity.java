@@ -53,94 +53,92 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+
+        if (resultCode == RESULT_OK) {
             Log.i(TAG, "onActivityResult: ");
-            if (data.hasExtra(EXTRA_RESULT_SELECTED_ALBUM)) {
-                Intent intent = new Intent(this, MainSingleAlbumActivity.class);
-                intent.putExtra(MainAlbumListActivity.EXTRA_BUCKET, data.getStringExtra(EXTRA_BUCKET));
-                intent.putExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM, data.getStringExtra(EXTRA_TYPE_ALBUM));
-                intent.putExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, data.getBooleanExtra(EXTRA_BACK_SELECT, true));
-                startActivityForResult(intent, 12);
-            } else {
+
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
                 Log.i(TAG, "onActivityResult: ");
+                if (data.hasExtra(EXTRA_RESULT_SELECTED_ALBUM)) {
+                    Intent intent = new Intent(this, MainSingleAlbumActivity.class);
+                    intent.putExtra(MainAlbumListActivity.EXTRA_BUCKET, data.getStringExtra(EXTRA_BUCKET));
+                    intent.putExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM, data.getStringExtra(EXTRA_TYPE_ALBUM));
+                    intent.putExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, data.getBooleanExtra(EXTRA_BACK_SELECT, true));
+                    startActivityForResult(intent, 12);
+                }
             }
 
-        }
-
-//        ------------------------------------        ------------------------------------
-        if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
-            if (data.hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
-                Log.i(TAG, "onActivityResult: ");
-                Intent i = new Intent(this, ShowMediaFileActivity.class);
-                i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_PICTURE, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_PICTURE));
-                i.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
-                i.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
-                startActivityForResult(i, 80);
-            }
-            if (data.hasExtra(EXTRA_RESULT_SELECTED_VIDEO)) {
-                Log.i(TAG, "onActivityResult: ");
-                Intent videoPlayer = new Intent(this, VideoPlayerActivity.class);
-                videoPlayer.putExtra(EXTRA_MEDIA_PATHS_VIDEO, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_VIDEO));
-                videoPlayer.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
-                videoPlayer.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
-                videoPlayer.putExtra(EXTRA_NAME, user);
-                startActivityForResult(videoPlayer, 81);
-            }
-
-        }
-
-        //        ------------------------------------        ------------------------------------
-        if (requestCode == 12 & resultCode == Activity.RESULT_CANCELED || requestCode == 81 & resultCode == Activity.RESULT_CANCELED) {
-            Log.i(TAG, "onActivityResult: ");
-            Intent intent = new Intent(this, MainAlbumListActivity.class);
-            intent.putExtra(EXTRA_JID, jid);
-            intent.putExtra(EXTRA_NAME, user);
-            startActivityForResult(intent, RESULT_LOAD_IMAGE);
-
-        }
-        //        ------------------------------------        ------------------------------------
-
-
-        if (requestCode == 81 && resultCode == Activity.RESULT_OK) {
-            if (data.hasExtra(EXTRA_MEDIA_PATHS_VIDEO)) {
-                ArrayList<String> mImagePaths;
-                mImagePaths = data.getExtras().getStringArrayList(EXTRA_MEDIA_PATHS_VIDEO);
-                if (mImagePaths != null) {
+            if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
+                if (data.hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
+                    Log.i(TAG, "onActivityResult: ");
                     Intent i = new Intent(this, ShowMediaFileActivity.class);
-                    i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_VIDEO, mImagePaths);
+                    i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_PICTURE, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_PICTURE));
                     i.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
                     i.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
-                    startActivityForResult(i, 81);
+                    startActivityForResult(i, 80);
                 }
-            } else {
-                ArrayList<String> paths = data.getExtras().getStringArrayList("paths");
-                if (paths == null) {
-                    return;
-                } else {
-                    StringBuffer result = new StringBuffer();
-                    for (int i = 0; i < paths.size(); i++) {
-                        result.append(paths.get(i));
-                    }
-                    String fileString = result.toString();
-                    File file = new File(fileString);
+                if (data.hasExtra(EXTRA_RESULT_SELECTED_VIDEO)) {
                     Log.i(TAG, "onActivityResult: ");
+                    Intent videoPlayer = new Intent(this, VideoPlayerActivity.class);
+                    videoPlayer.putExtra(EXTRA_MEDIA_PATHS_VIDEO, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_VIDEO));
+                    videoPlayer.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
+                    videoPlayer.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
+                    videoPlayer.putExtra(EXTRA_NAME, user);
+                    startActivityForResult(videoPlayer, 81);
                 }
+
+            }
+
+            if (requestCode == 81 && resultCode == Activity.RESULT_OK) {
+                if (data.hasExtra(EXTRA_MEDIA_PATHS_VIDEO)) {
+                    ArrayList<String> mImagePaths;
+                    mImagePaths = data.getExtras().getStringArrayList(EXTRA_MEDIA_PATHS_VIDEO);
+                    if (mImagePaths != null) {
+                        Intent i = new Intent(this, ShowMediaFileActivity.class);
+                        i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_VIDEO, mImagePaths);
+                        i.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
+                        i.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
+                        startActivityForResult(i, 81);
+                    }
+                } else {
+                    ArrayList<String> paths = data.getExtras().getStringArrayList("paths");
+                    if (paths == null) {
+                        return;
+                    } else {
+                        StringBuffer result = new StringBuffer();
+                        for (int i = 0; i < paths.size(); i++) {
+                            result.append(paths.get(i));
+                        }
+                        String fileString = result.toString();
+                        File file = new File(fileString);
+                        Log.i(TAG, "onActivityResult: ");
+                    }
+                }
+
             }
 
         }
-
-
-        //        ------------------------------------        ------------------------------------
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_CANCELED) {
+        if (resultCode == RESULT_CANCELED) {
             Log.i(TAG, "onActivityResult: ");
-        }
-        if (requestCode == 80 && resultCode == RESULT_CANCELED) {
-            Log.i(TAG, "onActivityResult: ");
-            Intent intent = new Intent(this, MainAlbumListActivity.class);
-            intent.putExtra(EXTRA_JID, jid);
-            intent.putExtra(EXTRA_NAME, user);
-            startActivityForResult(intent, RESULT_LOAD_IMAGE);
+            if (requestCode == 12 & resultCode == Activity.RESULT_CANCELED || requestCode == 81 & resultCode == Activity.RESULT_CANCELED) {
+                Log.i(TAG, "onActivityResult: ");
+                Intent intent = new Intent(this, MainAlbumListActivity.class);
+                intent.putExtra(EXTRA_JID, jid);
+                intent.putExtra(EXTRA_NAME, user);
+                startActivityForResult(intent, RESULT_LOAD_IMAGE);
+            }
+
+            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_CANCELED) {
+                Log.i(TAG, "onActivityResult: ");
+            }
+            if (requestCode == 80 && resultCode == RESULT_CANCELED) {
+                Log.i(TAG, "onActivityResult: ");
+                Intent intent = new Intent(this, MainAlbumListActivity.class);
+                intent.putExtra(EXTRA_JID, jid);
+                intent.putExtra(EXTRA_NAME, user);
+                startActivityForResult(intent, RESULT_LOAD_IMAGE);
+            }
+
         }
     }
 }
