@@ -6,7 +6,7 @@
     android:background="#FAFAFA"
     android:layout_height="match_parent"
     app:popupTheme="@style/Widget.AppCompat.Toolbar"
-    tools:context="com.bsdenterprise.carlos.anguiano.multimedia.Activity.HomeActivity">
+    tools:context=".Multimedia.Activity.HomeActivity">
 
 
     <android.support.v7.widget.Toolbar

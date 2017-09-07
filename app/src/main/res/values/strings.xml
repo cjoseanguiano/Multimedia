@@ -7,5 +7,13 @@
     <string name="OK">OK</string>
     <string name="msg_type_your_message">Write your message…</string>
     <string name="media">media</string>
+    <string name="Done">echo</string>
 
+
+
+    <string name="error_video">Error</string>
+    <string name="error_occurred">Ocurrió un error en la reproducción del video</string>
+    <string name="description">description</string>
+    <string name="sendPhoto">Enviar Fotografias</string>
+    <string name="sendVideo">Enviar Video</string>
 </resources>

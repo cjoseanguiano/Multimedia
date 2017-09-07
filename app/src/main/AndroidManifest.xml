@@ -12,17 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.HomeActivity">
+        <activity android:name=".Multimedia.Activity.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.MainAlbumListActivity" />
-        <activity android:name=".Activity.MainSingleAlbumActivity" />
-        <!--<activity android:name=".Activity.PhotoViewerActivity" />-->
-        <activity android:name=".Activity.ShowMediaFileActivity"></activity>
+        <activity android:name=".Multimedia.Activity.MainAlbumListActivity" />
+        <activity android:name=".Multimedia.Activity.MainSingleAlbumActivity" />
+        <!-- <activity android:name=".Activity.PhotoViewerActivity" /> -->
+        <activity android:name=".Multimedia.Activity.ShowMediaFileActivity" />
+        <activity android:name=".VideoPlayer.Activity.VideoPlayerActivity"></activity>
     </application>
 
 </manifest>

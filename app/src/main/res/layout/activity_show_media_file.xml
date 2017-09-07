@@ -47,7 +47,7 @@
             android:paddingRight="8dp"
             android:paddingStart="8dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/crop" />
+            android:src="@drawable/ic_add_to_photos_white" />
 
         <EditText
             android:id="@+id/photoDescription"

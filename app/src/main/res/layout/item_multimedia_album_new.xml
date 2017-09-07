@@ -16,7 +16,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <com.bsdenterprise.carlos.anguiano.multimedia.Utils.SquareRelativeLayout
+            <com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Utils.SquareRelativeLayout
                 android:id="@+id/header_album_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -32,12 +32,12 @@
                     app:iiv_color="@color/cardview_dark_background"
                     app:iiv_icon="gmd-check"
                     tools:targetApi="lollipop" />
-                <com.bsdenterprise.carlos.anguiano.multimedia.Utils.SquareImageView
+                <com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Utils.SquareImageView
                     android:id="@+id/album_preview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop" />
-            </com.bsdenterprise.carlos.anguiano.multimedia.Utils.SquareRelativeLayout>
+            </com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Utils.SquareRelativeLayout>
             <View
                 android:id="@+id/album_card_divider"
                 android:layout_width="match_parent"
