@@ -8,4 +8,5 @@
     <color name="primary_title_white">#FAFAFA</color>
     <color name="primary_title_black">#000000</color>
     <color name="zxing_transparent">#35fafafa</color>
+    <color name="windowBackground">#FAFAFA</color>
 </resources>

@@ -3,4 +3,5 @@
     <item name="action_forward" type="id"/>
     <item name="viewPagerNew" type="id"></item>
     <item name="viewImageViewNew" type="id"></item>
+    <item name="action_info" type="id" />
 </resources>

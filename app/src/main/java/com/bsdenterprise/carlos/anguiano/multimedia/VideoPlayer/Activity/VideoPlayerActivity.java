@@ -19,6 +19,7 @@ import android.view.SurfaceView;
 import android.widget.FrameLayout;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.ShowMediaFileActivity;
+import com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Utils.SquareImageView;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Interface.IVideo;
 import com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Interface.MediaPlayerControl;
@@ -87,7 +88,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
 //        String value = ApplicationSingleton.getInstance().getString(R.string.titleMultimedia);
-        String value = "video";
+        String value = "videoK";
         String body = String.format(value, nameUserVideo);
         if (actionBar != null) {
             actionBar.show();
@@ -292,8 +293,8 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.i(TAG, "onCreateOptionsMenu: ");
         MenuItem menuItem;
-        menuItem = menu.add(Menu.NONE, R.id.crop_image_menu_crop, Menu.NONE, R.string.about);
-        menuItem.setIcon(R.drawable.crop_image_menu_crop);
+        menuItem = menu.add(Menu.NONE, R.id.action_info, Menu.NONE, R.string.Done);
+        menuItem.setIcon(R.drawable.ic_done);
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
     }
@@ -308,9 +309,9 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
                 finish();
                 return true;
             }
-            case R.id.action_forward: {
+            case R.id.action_info: {
                 if (videoPathString != null) {
-                    Intent intent = new Intent(this, ShowMediaFileActivity.class);
+                    Intent intent = new Intent(this, SquareImageView.class);
                     intent.putExtra(EXTRA_MEDIA_PATHS_VIDEO, mImagePath);
                     setResult(RESULT_OK, intent);
                     finish();
@@ -321,7 +322,6 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
                 return super.onOptionsItemSelected(item);
         }
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.i(TAG, "onTouchEvent: ");

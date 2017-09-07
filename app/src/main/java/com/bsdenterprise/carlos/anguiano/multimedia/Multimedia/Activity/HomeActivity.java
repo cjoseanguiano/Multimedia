@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
+import com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Activity.VideoPlayerActivity;
 
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainAlbumListActivity.EXTRA_JID;
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainAlbumListActivity.EXTRA_NAME;
@@ -17,6 +18,7 @@ import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.M
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainSingleAlbumActivity.EXTRA_RESULT_SELECTED_VIDEO;
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainSingleAlbumActivity.EXTRA_TYPE_BUCKET;
 import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.MainSingleAlbumActivity.EXTRA_TYPE_FILE;
+import static com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Activity.VideoPlayerActivity.EXTRA_MEDIA_PATHS_VIDEO;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -79,14 +81,12 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_VIDEO)) {
                     Log.i(TAG, "onActivityResult: ");
-//                    Intent videoPlayer = new Intent(this, VideoPlayerActivity.class);
-//                    videoPlayer.putExtra(EXTRA_MEDIA_PATHS_VIDEO, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_MEDIA_VIDEO));
-//                    videoPlayer.putExtra(EXTRA_PHOTO_ORIENTATION, orientation);
-//                    videoPlayer.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
-//                    videoPlayer.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
-//                    videoPlayer.putExtra(EXTRA_NAME, nameMultimedia);
-//                    videoPlayer.putExtra(EXTRA_PHOTO_EDIT, true);
-//                    startActivityForResult(videoPlayer, 81);
+                    Intent videoPlayer = new Intent(this, VideoPlayerActivity.class);
+                    videoPlayer.putExtra(EXTRA_MEDIA_PATHS_VIDEO, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_VIDEO));
+                    videoPlayer.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
+                    videoPlayer.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
+                    videoPlayer.putExtra(EXTRA_NAME, user);
+                    startActivityForResult(videoPlayer, 81);
                 }
             }
         }
