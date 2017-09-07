@@ -31,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="50dp"
         android:gravity="end"
         android:orientation="horizontal"
         android:visibility="visible">
@@ -46,6 +46,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingStart="8dp"
+            android:layout_marginTop="5dp"
             android:src="@drawable/crop" />
 
         <EditText
@@ -60,8 +61,19 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingStart="16dp"
+            android:layout_marginTop="16dp"
             android:textColor="@android:color/white"
             android:textColorHint="@android:color/white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/send_white"
+            app:pressedTranslationZ="12dp" />
 
     </LinearLayout>
 
@@ -88,14 +100,7 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/send_white"
-        app:pressedTranslationZ="12dp" />
+
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"

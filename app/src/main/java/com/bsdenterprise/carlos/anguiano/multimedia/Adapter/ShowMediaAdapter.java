@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
+import com.bsdenterprise.carlos.anguiano.multimedia.Utils.TouchImageView;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
@@ -69,6 +70,7 @@ public class ShowMediaAdapter extends PagerAdapter {
         final ProgressBar progressBar;
         TextView messageTextView;
         View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);
+
 //https://stackoverflow.com/questions/33818873/setting-images-from-url-in-viewpager-android/33819252
 //        inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //        View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);

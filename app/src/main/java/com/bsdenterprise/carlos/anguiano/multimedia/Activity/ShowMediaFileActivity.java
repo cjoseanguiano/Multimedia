@@ -40,8 +40,6 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     private FloatingActionButton send;
     private ImageView imageView;
     private BitmapFactory.Options options;
-    private ArrayList<String> images = new ArrayList<>();
-    private ArrayList<String> resourceFile = new ArrayList<>();
     private LinearLayout thumbnailsContainer;
     private ViewPager viewpagerMedia;
 
@@ -50,20 +48,10 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_media_file);
         Log.i(TAG, "onCreate: ");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181009.jpg");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
-        resourceFile.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
 
         startView();
         initToolbar();
         showIntent();
-
-        setImagesData();
         inflateThumbnails();
 
 
@@ -147,10 +135,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     private void showIntent() {
         Log.i(TAG, "showIntent: ");
         if (getIntent().hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
-            mImagePath.add("/storage/sdcard0/dcim/IMG_20170406_164424.jpg");
-            mImagePath.add("/storage/sdcard0/dcim/IMG_20170406_164430.jpg");
-            mImagePath.add("/storage/sdcard0/dcim/IMG_20170425_181005.jpg");
-//            mImagePath = getIntent().getExtras().getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
+             mImagePath = getIntent().getExtras().getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
         }
     }
 
@@ -177,7 +162,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     }
 
     private void inflateThumbnails() {
-        for (int i = 0; i < images.size(); i++) {
+        for (int i = 0; i < mImagePath.size(); i++) {
             View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
             ImageView one = imageLayout.findViewById(R.id.img_thumb);
             one.setOnClickListener(onChagePageClickListener(i));
@@ -186,7 +171,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
             options.inDither = false;
 
 
-            Uri uri = Uri.parse(resourceFile.get(i));
+            Uri uri = Uri.parse(mImagePath.get(i));
             Glide.with(this)
                     .load(new File(uri.getPath()))
                     .into(one);
@@ -202,11 +187,5 @@ public class ShowMediaFileActivity extends AppCompatActivity {
                 viewpagerMedia.setCurrentItem(i);
             }
         };
-    }
-
-    private void setImagesData() {
-        for (int i = 0; i < resourceFile.size(); i++) {
-            images.add(resourceFile.get(i));
-        }
     }
 }

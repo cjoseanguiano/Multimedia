@@ -1,4 +1,4 @@
-package com.bsdenterprise.carlos.anguiano.multimedia.Adapter;
+package com.bsdenterprise.carlos.anguiano.multimedia.Utils;
 
 import android.content.Context;
 import android.graphics.Matrix;
