@@ -44,10 +44,6 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     private static final String EXTRA_TYPE_FILE = "extra_type_file";
 
     private EditText photoDescription;
-    private ImageView imgDisplay;
-    private boolean putDescription;
-    private int orientation;
-    private String localPath;
     private ViewPager viewPager;
     private ShowMediaAdapter adapter;
     private ArrayList<String> mImagePath = new ArrayList<>();
@@ -60,11 +56,11 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     private String typeFile;
     private int currentPage;
     private int position;
-    MediaController mediaController;
     private FloatingActionButton send;
     private BitmapFactory.Options options;
     private LinearLayout thumbnailsContainer;
     private Toolbar toolbar;
+    private StringBuilder stringBuilder = new StringBuilder();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,8 +69,39 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         startView();
         setUpToolbar();
         showIntent();
-        inflateThumbnails();
+        inflateThumbnails(mImagePath);
+        checkBundle(bundle);
+        disableEditText(photoDescription);
+        checkImage();
 
+        send.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendPhoto();
+
+            }
+        });
+
+        addPicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addPicture();
+            }
+        });
+
+    }
+
+    private void checkImage() {
+        for (int i = 0; i < mImagePath.size(); i++) {
+            stringBuilder.append(mImagePath.get(i));
+        }
+        newPath = stringBuilder.toString();
+        if (newPath.contains(".jpg") || (newPath.contains(".png")) || (newPath.contains(".jpeg"))) {
+            createViewPager();
+        }
+    }
+
+    private void checkBundle(Bundle bundle) {
         if (bundle != null) {
             if (getIntent().hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
                 mImagePath = bundle.getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
@@ -93,42 +120,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
                 imageView.setImageBitmap(bmThumbnail);
             }
         }
-
         adapter = new ShowMediaAdapter(this, mImagePath);
-        imgDisplay = (ImageView) findViewById(R.id.imgDisplay);
-        photoDescription = (EditText) findViewById(R.id.photoDescription);
-
-        disableEditText(photoDescription);
-
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < mImagePath.size(); i++) {
-            stringBuilder.append(mImagePath.get(i));
-        }
-        newPath = stringBuilder.toString();
-
-        if (newPath.contains(".jpg") || (newPath.contains(".png")) || (newPath.contains(".jpeg"))) {
-            createViewPager();
-        }
-
-        if (putDescription && mImagePath.size() == 1) {
-            photoDescription.setVisibility(View.VISIBLE);
-        }
-
-        send = (FloatingActionButton) findViewById(R.id.fab);
-        send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendPhoto();
-
-            }
-        });
-
-        addPicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addPicture();
-            }
-        });
 
     }
 
@@ -137,6 +129,9 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         thumbnailsContainer = (LinearLayout) findViewById(R.id.container);
         addPicture = (ImageView) findViewById(R.id.imageView5);
         send = (FloatingActionButton) findViewById(R.id.fab);
+        photoDescription = (EditText) findViewById(R.id.photoDescription);
+        send = (FloatingActionButton) findViewById(R.id.fab);
+
     }
 
     private void showIntent() {
@@ -156,15 +151,6 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         frameLayoutV.addView(imageView);
     }
 
-    private void methodVisible() {
-
-        if (send.getVisibility() == View.VISIBLE) {
-            send.setVisibility(View.INVISIBLE);
-        } else {
-            send.setVisibility(View.VISIBLE);
-        }
-    }
-
     private void setUpToolbar() {
         setSupportActionBar(toolbar);
         ActionBar actionbar = getSupportActionBar();
@@ -177,7 +163,6 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         Intent returnIntent = new Intent();
         returnIntent.putExtra("photoDescription", photoDescription.getText().toString());
         returnIntent.putStringArrayListExtra("paths", mImagePath);
-        returnIntent.putExtra("orientation", orientation);
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
@@ -219,7 +204,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
             Log.i(TAG, "onActivityResult: ");
             viewPager.setAdapter(null);
             mImagePath = data.getExtras().getStringArrayList(EXTRA_RESULT_SELECTED_PICTURE);
-            inflateThumbnails();
+            inflateThumbnails(mImagePath);
             if (mImagePath != null) {
                 StringBuilder stringBuilder = new StringBuilder();
                 for (int i = 0; i < mImagePath.size(); i++) {
@@ -301,23 +286,23 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         editText.setBackgroundColor(Color.TRANSPARENT);
     }
 
-    private void inflateThumbnails() {
-        for (int i = 0; i < mImagePath.size(); i++) {
-            View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
-            ImageView one = imageLayout.findViewById(R.id.img_thumb);
-            one.setOnClickListener(onChagePageClickListener(i));
-            options = new BitmapFactory.Options();
-            options.inSampleSize = 3;
-            options.inDither = false;
-
-
-            Uri uri = Uri.parse(mImagePath.get(i));
-            Glide.with(this)
-                    .load(new File(uri.getPath()))
-                    .into(one);
-
-            thumbnailsContainer.addView(imageLayout);
+    private void inflateThumbnails(ArrayList<String> mImagePath) {
+        if (mImagePath != null && mImagePath.size() > 0) {
+            for (int i = 0; i < this.mImagePath.size(); i++) {
+                View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
+                ImageView one = imageLayout.findViewById(R.id.img_thumb);
+                one.setOnClickListener(onChagePageClickListener(i));
+                options = new BitmapFactory.Options();
+                options.inSampleSize = 3;
+                options.inDither = false;
+                Uri uri = Uri.parse(this.mImagePath.get(i));
+                Glide.with(this)
+                        .load(new File(uri.getPath()))
+                        .into(one);
+                thumbnailsContainer.addView(imageLayout);
+            }
         }
+
     }
 
     private View.OnClickListener onChagePageClickListener(final int i) {

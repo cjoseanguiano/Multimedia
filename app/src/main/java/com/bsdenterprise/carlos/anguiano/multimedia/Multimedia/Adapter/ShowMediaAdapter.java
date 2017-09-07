@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class ShowMediaAdapter extends PagerAdapter {
     private ArrayList<String> paths = new ArrayList<>();
     private LayoutInflater inflater;
-    private final Activity _activity;
+    private Activity activity;
 
     @Override
     public int getItemPosition(Object object) {
@@ -40,11 +40,10 @@ public class ShowMediaAdapter extends PagerAdapter {
         return 0;
     }
 
-    public ShowMediaAdapter(Activity activity,ArrayList<String> imagePaths) {
-        this._activity = activity;
+    public ShowMediaAdapter(Activity act, ArrayList<String> imagePaths) {
+        this.activity = act;
         this.paths = imagePaths;
-        this.inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        this.inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -66,42 +65,26 @@ public class ShowMediaAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         final TouchImageView imgDisplay;
 
-        ImageButton btnPlay;
-        final ImageButton btnDownload;
-        final ProgressBar progressBar;
-        TextView messageTextView;
         View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);
 
-//https://stackoverflow.com/questions/33818873/setting-images-from-url-in-viewpager-android/33819252
-//        inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);
+        imgDisplay = viewLayout.findViewById(R.id.imgDisplay);
 
-        imgDisplay = (TouchImageView) viewLayout.findViewById(R.id.imgDisplay);
-        messageTextView = (TextView) viewLayout.findViewById(R.id.photoDescription);
-        btnPlay = (ImageButton) viewLayout.findViewById(R.id.btnPlay);
-        btnDownload = (ImageButton) viewLayout.findViewById(R.id.btnDownload);
-        progressBar = (ProgressBar) viewLayout.findViewById(R.id.progressBar);
-
-        messageTextView.setVisibility(View.GONE);
-        btnPlay.setVisibility(View.GONE);
-        btnDownload.setVisibility(View.GONE);
-        progressBar.setVisibility(View.GONE);
         String localPath = paths.get(position);
         File file = new File(localPath);
         if (file.exists()) {
-            Glide.with(_activity)
+            Glide.with(activity)
                     .load(new File(localPath))
                     .into(imgDisplay);
             container.addView(viewLayout);
         } else {
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(_activity);
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(activity);
             alertDialog.setTitle("Error de Imagen");
             alertDialog.setMessage("Virifica que la imagen exista dentro de la tarjeta SD");
             alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
-                    _activity.finish();
+                    activity.finish();
                 }
             });
             AlertDialog alertDialog1 = alertDialog.create();
@@ -119,10 +102,10 @@ public class ShowMediaAdapter extends PagerAdapter {
     }
 
     @Nullable
-    public String getCurrentItem(int position){
-        if(paths.size()>0) {
+    public String getCurrentItem(int position) {
+        if (paths.size() > 0) {
             return paths.get(position);
-        }else
+        } else
             return null;
     }
 }
