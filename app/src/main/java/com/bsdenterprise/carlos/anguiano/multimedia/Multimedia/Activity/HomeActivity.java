@@ -115,7 +115,6 @@ public class HomeActivity extends AppCompatActivity {
                     String fileString = result.toString();
                     File file = new File(fileString);
                     Log.i(TAG, "onActivityResult: ");
-//                    mPresenter.sendVideoMessage(file);
                 }
             }
 

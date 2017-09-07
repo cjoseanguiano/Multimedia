@@ -10,12 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Utils.TouchImageView;
+import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bumptech.glide.Glide;
 
 import java.io.File;
@@ -27,14 +24,14 @@ import java.util.ArrayList;
  */
 
 public class ShowMediaAdapter extends PagerAdapter {
-    private ArrayList<String> paths = new ArrayList<>();
+    private ArrayList<String> mImagePath = new ArrayList<>();
     private LayoutInflater inflater;
     private Activity activity;
 
     @Override
     public int getItemPosition(Object object) {
-        for (int i = 0; i < paths.size(); i++) {
-            if (paths.get(i).equals(object))
+        for (int i = 0; i < mImagePath.size(); i++) {
+            if (mImagePath.get(i).equals(object))
                 return i;
         }
         return 0;
@@ -42,13 +39,13 @@ public class ShowMediaAdapter extends PagerAdapter {
 
     public ShowMediaAdapter(Activity act, ArrayList<String> imagePaths) {
         this.activity = act;
-        this.paths = imagePaths;
+        this.mImagePath = imagePaths;
         this.inflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
     public int getCount() {
-        return this.paths.size();
+        return this.mImagePath.size();
     }
 
     @Override
@@ -69,7 +66,7 @@ public class ShowMediaAdapter extends PagerAdapter {
 
         imgDisplay = viewLayout.findViewById(R.id.imgDisplay);
 
-        String localPath = paths.get(position);
+        String localPath = mImagePath.get(position);
         File file = new File(localPath);
         if (file.exists()) {
             Glide.with(activity)
@@ -103,8 +100,8 @@ public class ShowMediaAdapter extends PagerAdapter {
 
     @Nullable
     public String getCurrentItem(int position) {
-        if (paths.size() > 0) {
-            return paths.get(position);
+        if (mImagePath.size() > 0) {
+            return mImagePath.get(position);
         } else
             return null;
     }
