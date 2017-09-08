@@ -1,9 +1,8 @@
 package com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +23,6 @@ import static com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.M
 import static com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Activity.VideoPlayerActivity.EXTRA_MEDIA_PATHS_VIDEO;
 
 public class HomeActivity extends AppCompatActivity {
-
     private static final String TAG = HomeActivity.class.getSimpleName();
 
     private static final int RESULT_LOAD_IMAGE = 90;
@@ -56,21 +54,23 @@ public class HomeActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
+        if (requestCode == RESULT_LOAD_IMAGE) {
             Log.i(TAG, "onActivityResult: ");
-
-            if (requestCode == RESULT_LOAD_IMAGE) {
-                Log.i(TAG, "onActivityResult: ");
+            if (data != null) {
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_ALBUM)) {
                     Intent intent = new Intent(this, MainSingleAlbumActivity.class);
                     intent.putExtra(MainAlbumListActivity.EXTRA_BUCKET, data.getStringExtra(MainAlbumListActivity.EXTRA_BUCKET));
                     intent.putExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM, data.getStringExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM));
                     intent.putExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, data.getBooleanExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, true));
                     startActivityForResult(intent, RESULT_MAIN_SINGLE_ALBUM);
+                }else{
+                    Log.i(TAG, "onActivityResult: ");
                 }
             }
+        }
 
-            if (requestCode == RESULT_MAIN_SINGLE_ALBUM) {
+        if (requestCode == RESULT_MAIN_SINGLE_ALBUM) {
+            if (data != null) {
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
                     Log.i(TAG, "onActivityResult: ");
                     Intent i = new Intent(this, ShowMediaFileActivity.class);
@@ -88,10 +88,12 @@ public class HomeActivity extends AppCompatActivity {
                     videoPlayer.putExtra(EXTRA_NAME, user);
                     startActivityForResult(videoPlayer, RESULT_VIDEO_SELECTED);
                 }
-
             }
 
-            if (requestCode == RESULT_VIDEO_SELECTED) {
+        }
+
+        if (requestCode == RESULT_VIDEO_SELECTED) {
+            if (data != null) {
                 if (data.hasExtra(EXTRA_MEDIA_PATHS_VIDEO)) {
                     ArrayList<String> mImagePaths;
                     mImagePaths = data.getExtras().getStringArrayList(EXTRA_MEDIA_PATHS_VIDEO);
@@ -116,7 +118,6 @@ public class HomeActivity extends AppCompatActivity {
                         Log.i(TAG, "onActivityResult: ");
                     }
                 }
-
             }
 
         }
