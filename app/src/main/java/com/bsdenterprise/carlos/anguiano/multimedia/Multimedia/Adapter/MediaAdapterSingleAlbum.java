@@ -290,7 +290,7 @@ public class MediaAdapterSingleAlbum extends RecyclerView.Adapter<MediaAdapterSi
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             MenuItem item;
             customMode = mode;
-            item = menu.add(Menu.NONE, R.id.action_forward_multimedia, Menu.NONE, R.string.OK);
+            item = menu.add(Menu.NONE, R.id.forward_multimedia, Menu.NONE, R.string.OK);
             item.setTitle("OK");
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
@@ -306,7 +306,7 @@ public class MediaAdapterSingleAlbum extends RecyclerView.Adapter<MediaAdapterSi
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             int id = item.getItemId();
             switch (id) {
-                case R.id.action_forward_multimedia:
+                case R.id.forward_multimedia:
                     if (messageActionsListener != null) {
                         ArrayList<String> messagesIds = new ArrayList<>();
                         for (DataPicture listSelected : selectedMessages) {

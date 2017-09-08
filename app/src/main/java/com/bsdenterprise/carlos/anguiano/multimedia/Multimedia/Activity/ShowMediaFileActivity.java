@@ -230,7 +230,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
         if (!iconRemove) {
             menu.clear();
-            MenuItem item = menu.add(Menu.NONE, R.id.crop_image_multimedia, Menu.NONE, R.string.crop_image_menu_crop);
+            MenuItem item = menu.add(Menu.NONE, R.id.crop_image_menu_crop_multimedia, Menu.NONE, R.string.crop_image_menu_crop_multimedia);
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
             item.setIcon(R.drawable.crop_multimedia);
         }
@@ -241,7 +241,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.crop_image_multimedia:
+            case R.id.crop_image_menu_crop_multimedia:
                 final int[] chatMessage = new int[1];
                 chatMessage[0] = adapter.getItemPosition(currentPage);
                 position = viewPager.getCurrentItem();

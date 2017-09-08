@@ -292,7 +292,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.i(TAG, "onCreateOptionsMenu: ");
         MenuItem menuItem;
-        menuItem = menu.add(Menu.NONE, R.id.action_info_multimedia, Menu.NONE, R.string.Done);
+        menuItem = menu.add(Menu.NONE, R.id.info_multimedia, Menu.NONE, R.string.Done);
         menuItem.setIcon(R.drawable.ic_done);
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
@@ -308,7 +308,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
                 finish();
                 return true;
             }
-            case R.id.action_info_multimedia: {
+            case R.id.info_multimedia: {
                 if (videoPathString != null) {
                     Intent intent = new Intent(this, SquareImageView.class);
                     intent.putExtra(EXTRA_MEDIA_PATHS_VIDEO, mImagePath);
