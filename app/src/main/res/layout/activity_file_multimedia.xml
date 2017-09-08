@@ -45,7 +45,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:paddingStart="8dp"
-            android:src="@drawable/ic_add_to_photos_white" />
+            android:src="@drawable/ic_add_photos_multimedia" />
 
         <EditText
             android:id="@+id/photoDescription"
@@ -68,9 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
+            android:layout_margin="@dimen/fab_margin_multimedia"
             android:layout_marginTop="20dp"
-            android:src="@drawable/send_white"
+            android:src="@drawable/send_multimedia"
             app:pressedTranslationZ="12dp" />
 
     </LinearLayout>

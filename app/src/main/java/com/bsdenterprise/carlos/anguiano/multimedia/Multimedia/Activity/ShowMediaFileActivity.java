@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.ThumbnailUtils;
-import android.media.session.MediaController;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -65,7 +64,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_media_file);
+        setContentView(R.layout.activity_file_multimedia);
         startView();
         setUpToolbar();
         showIntent();
@@ -147,7 +146,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         FrameLayout frameLayoutV = (FrameLayout) findViewById(R.id.fragmentContainer);
         imageView = new ImageView(this);
         CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT);
-        imageView.setId(R.id.viewImageViewNew);
+        imageView.setId(R.id.viewImageMultimedia);
         imageView.setLayoutParams(params);
         frameLayoutV.addView(imageView);
     }
@@ -231,9 +230,9 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         super.onCreateOptionsMenu(menu);
         if (!iconRemove) {
             menu.clear();
-            MenuItem item = menu.add(Menu.NONE, R.id.crop_image_menu_crop, Menu.NONE, R.string.crop_image_menu_crop);
+            MenuItem item = menu.add(Menu.NONE, R.id.crop_image_multimedia, Menu.NONE, R.string.crop_image_menu_crop);
             item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            item.setIcon(R.drawable.crop);
+            item.setIcon(R.drawable.crop_multimedia);
         }
         return true;
     }
@@ -242,7 +241,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.crop_image_menu_crop:
+            case R.id.crop_image_multimedia:
                 final int[] chatMessage = new int[1];
                 chatMessage[0] = adapter.getItemPosition(currentPage);
                 position = viewPager.getCurrentItem();
@@ -276,7 +275,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
         FrameLayout frameLayoutI = (FrameLayout) findViewById(R.id.fragmentContainer);
         viewPager = new ViewPager(this);
         CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.MATCH_PARENT);
-        viewPager.setId(R.id.viewPagerNew);
+        viewPager.setId(R.id.viewPagerMultimedia);
         viewPager.setLayoutParams(params);
         frameLayoutI.addView(viewPager);
         viewPager.setAdapter(adapter);
@@ -295,7 +294,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
     private void inflateThumbnails(ArrayList<String> mImagePath) {
         if (mImagePath != null && mImagePath.size() > 0) {
             for (int i = 0; i < this.mImagePath.size(); i++) {
-                View imageLayout = getLayoutInflater().inflate(R.layout.item_image, null);
+                View imageLayout = getLayoutInflater().inflate(R.layout.item_thumbnails_multimedia, null);
                 ImageView one = imageLayout.findViewById(R.id.img_thumb);
                 one.setOnClickListener(onChagePageClickListener(i));
                 options = new BitmapFactory.Options();

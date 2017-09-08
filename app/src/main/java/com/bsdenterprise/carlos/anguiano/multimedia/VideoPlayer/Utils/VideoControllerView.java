@@ -112,7 +112,7 @@ public class VideoControllerView extends FrameLayout {
     protected View makeControllerView() {
         Log.i(TAG, "makeControllerView: ");
         LayoutInflater inflate = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mRoot = inflate.inflate(R.layout.activity_video_controller, null);
+        mRoot = inflate.inflate(R.layout.videoplayer_controller_multimedia, null);
         initControllerView(mRoot);
         return mRoot;
     }

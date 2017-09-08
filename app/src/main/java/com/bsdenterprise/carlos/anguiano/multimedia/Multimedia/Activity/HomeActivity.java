@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_multimedia);
 
         button = (Button) findViewById(R.id.buttonHome);
         button.setOnClickListener(new View.OnClickListener() {

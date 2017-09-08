@@ -36,7 +36,7 @@ public class MainSingleAlbumActivity extends AppCompatActivity implements TypeAl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_single_album);
+        setContentView(R.layout.activity_single_album_multimedia);
         Log.i(TAG, "onCreate: ");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

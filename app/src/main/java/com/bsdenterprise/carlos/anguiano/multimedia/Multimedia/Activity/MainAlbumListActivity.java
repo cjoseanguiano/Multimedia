@@ -34,7 +34,7 @@ public class MainAlbumListActivity extends AppCompatActivity implements PhotoAlb
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_album_list);
+        setContentView(R.layout.activity_album_list_multimedia);
         Log.i(TAG, "onCreate: ");
         label_Photo = getResources().getString(R.string.image);
         label_Video = getResources().getString(R.string.video);

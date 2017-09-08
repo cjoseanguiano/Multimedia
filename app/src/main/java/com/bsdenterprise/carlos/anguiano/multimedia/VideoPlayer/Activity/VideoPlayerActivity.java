@@ -18,7 +18,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.FrameLayout;
 
-import com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity.ShowMediaFileActivity;
 import com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Utils.SquareImageView;
 import com.bsdenterprise.carlos.anguiano.multimedia.R;
 import com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Interface.IVideo;
@@ -50,7 +49,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "onCreate: ");
-        setContentView(R.layout.activity_video_player);
+        setContentView(R.layout.activity_videoplayer_multimedia);
         initView();
         initVariable();
         setupToolbar();
@@ -293,7 +292,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
     public boolean onCreateOptionsMenu(Menu menu) {
         Log.i(TAG, "onCreateOptionsMenu: ");
         MenuItem menuItem;
-        menuItem = menu.add(Menu.NONE, R.id.action_info, Menu.NONE, R.string.Done);
+        menuItem = menu.add(Menu.NONE, R.id.action_info_multimedia, Menu.NONE, R.string.Done);
         menuItem.setIcon(R.drawable.ic_done);
         menuItem.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
@@ -309,7 +308,7 @@ public class VideoPlayerActivity extends AppCompatActivity implements IVideo.Vie
                 finish();
                 return true;
             }
-            case R.id.action_info: {
+            case R.id.action_info_multimedia: {
                 if (videoPathString != null) {
                     Intent intent = new Intent(this, SquareImageView.class);
                     intent.putExtra(EXTRA_MEDIA_PATHS_VIDEO, mImagePath);

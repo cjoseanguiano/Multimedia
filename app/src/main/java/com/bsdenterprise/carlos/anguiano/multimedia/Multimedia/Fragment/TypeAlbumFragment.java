@@ -216,7 +216,7 @@ public class TypeAlbumFragment extends Fragment implements MediaSingleClicked, M
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_type_album, container, false);
+        view = inflater.inflate(R.layout.fragment_type_multimedia, container, false);
         mRecyclerView = view.findViewById(R.id.grid_recycler);
         new MediaAsyncTask().execute(type);
         return view;

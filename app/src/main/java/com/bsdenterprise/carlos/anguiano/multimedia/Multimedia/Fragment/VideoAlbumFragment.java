@@ -137,7 +137,7 @@ public class VideoAlbumFragment extends Fragment implements MediaAdapterAllAlbum
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_video_album, container, false);
+        view = inflater.inflate(R.layout.fragment_video_multimedia, container, false);
         mRecyclerView = view.findViewById(R.id.grid_recycler);
         new MediaAsyncTask().execute(type);
         return view;

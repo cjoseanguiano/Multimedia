@@ -62,7 +62,7 @@ public class ShowMediaAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, final int position) {
         final TouchImageView imgDisplay;
 
-        View viewLayout = inflater.inflate(R.layout.item_fullscreen_image, container, false);
+        View viewLayout = inflater.inflate(R.layout.item_fullscreen_multimedia, container, false);
 
         imgDisplay = viewLayout.findViewById(R.id.imgDisplay);
 
