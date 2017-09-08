@@ -117,6 +117,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
                 Bitmap bmThumbnail = ThumbnailUtils.extractThumbnail(ThumbnailUtils.createVideoThumbnail(newPath,
                         MediaStore.Video.Thumbnails.MINI_KIND), 200, 200);
                 createImageViewNew();
+                inflateThumbnails(mImagePath);
                 imageView.setImageBitmap(bmThumbnail);
             }
         }
@@ -191,6 +192,7 @@ public class ShowMediaFileActivity extends AppCompatActivity {
                     mImagePath.remove(position);
                     mImagePath.add(newPath);
                     adapter = new ShowMediaAdapter(this, mImagePath);
+                    inflateThumbnails(mImagePath);
                     createViewPager();
 
                 } catch (Exception e) {
