@@ -1,5 +1,6 @@
 package com.bsdenterprise.carlos.anguiano.multimedia.Multimedia.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RESULT_LOAD_IMAGE) {
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == Activity.RESULT_OK) {
             Log.i(TAG, "onActivityResult: ");
             if (data != null) {
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_ALBUM)) {
@@ -69,7 +70,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
 
-        if (requestCode == RESULT_MAIN_SINGLE_ALBUM) {
+        if (requestCode == RESULT_MAIN_SINGLE_ALBUM && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
                     Log.i(TAG, "onActivityResult: ");
@@ -92,7 +93,7 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
-        if (requestCode == RESULT_VIDEO_SELECTED) {
+        if (requestCode == RESULT_VIDEO_SELECTED && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 if (data.hasExtra(EXTRA_MEDIA_PATHS_VIDEO)) {
                     ArrayList<String> mImagePaths;
