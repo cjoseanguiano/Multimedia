@@ -26,10 +26,12 @@ import static com.bsdenterprise.carlos.anguiano.multimedia.VideoPlayer.Activity.
 public class HomeActivity extends AppCompatActivity {
 
     private static final String TAG = HomeActivity.class.getSimpleName();
-    private static final int RESULT_LOAD_IMAGE = 3;//Result Album
-    private static final String EXTRA_BUCKET = "extra_bucket";
-    private static final String EXTRA_TYPE_ALBUM = "extra_type_album";
-    private static final String EXTRA_BACK_SELECT = "extra_back_select";
+
+    private static final int RESULT_LOAD_IMAGE = 90;
+    private static final int RESULT_MAIN_SINGLE_ALBUM = 91;
+    private static final int RESULT_IMAGE_SELECTED = 92;
+    private static final int RESULT_VIDEO_SELECTED = 93;
+
 
     private Button button;
     private String jid = "carchat@bsdenterprise.com";
@@ -57,25 +59,25 @@ public class HomeActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             Log.i(TAG, "onActivityResult: ");
 
-            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK) {
+            if (requestCode == RESULT_LOAD_IMAGE) {
                 Log.i(TAG, "onActivityResult: ");
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_ALBUM)) {
                     Intent intent = new Intent(this, MainSingleAlbumActivity.class);
-                    intent.putExtra(MainAlbumListActivity.EXTRA_BUCKET, data.getStringExtra(EXTRA_BUCKET));
-                    intent.putExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM, data.getStringExtra(EXTRA_TYPE_ALBUM));
-                    intent.putExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, data.getBooleanExtra(EXTRA_BACK_SELECT, true));
-                    startActivityForResult(intent, 12);
+                    intent.putExtra(MainAlbumListActivity.EXTRA_BUCKET, data.getStringExtra(MainAlbumListActivity.EXTRA_BUCKET));
+                    intent.putExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM, data.getStringExtra(MainAlbumListActivity.EXTRA_TYPE_ALBUM));
+                    intent.putExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, data.getBooleanExtra(MainAlbumListActivity.EXTRA_BACK_SELECT, true));
+                    startActivityForResult(intent, RESULT_MAIN_SINGLE_ALBUM);
                 }
             }
 
-            if (requestCode == 12 && resultCode == Activity.RESULT_OK) {
+            if (requestCode == RESULT_MAIN_SINGLE_ALBUM) {
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_PICTURE)) {
                     Log.i(TAG, "onActivityResult: ");
                     Intent i = new Intent(this, ShowMediaFileActivity.class);
                     i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_PICTURE, data.getStringArrayListExtra(EXTRA_RESULT_SELECTED_PICTURE));
                     i.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
                     i.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
-                    startActivityForResult(i, 80);
+                    startActivityForResult(i, RESULT_IMAGE_SELECTED);
                 }
                 if (data.hasExtra(EXTRA_RESULT_SELECTED_VIDEO)) {
                     Log.i(TAG, "onActivityResult: ");
@@ -84,12 +86,12 @@ public class HomeActivity extends AppCompatActivity {
                     videoPlayer.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
                     videoPlayer.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
                     videoPlayer.putExtra(EXTRA_NAME, user);
-                    startActivityForResult(videoPlayer, 81);
+                    startActivityForResult(videoPlayer, RESULT_VIDEO_SELECTED);
                 }
 
             }
 
-            if (requestCode == 81 && resultCode == Activity.RESULT_OK) {
+            if (requestCode == RESULT_VIDEO_SELECTED) {
                 if (data.hasExtra(EXTRA_MEDIA_PATHS_VIDEO)) {
                     ArrayList<String> mImagePaths;
                     mImagePaths = data.getExtras().getStringArrayList(EXTRA_MEDIA_PATHS_VIDEO);
@@ -98,14 +100,14 @@ public class HomeActivity extends AppCompatActivity {
                         i.putExtra(ShowMediaFileActivity.EXTRA_RESULT_SELECTED_VIDEO, mImagePaths);
                         i.putExtra(EXTRA_TYPE_BUCKET, data.getStringExtra(EXTRA_TYPE_BUCKET));
                         i.putExtra(EXTRA_TYPE_FILE, data.getStringExtra(EXTRA_TYPE_FILE));
-                        startActivityForResult(i, 81);
+                        startActivityForResult(i, RESULT_VIDEO_SELECTED);
                     }
                 } else {
                     ArrayList<String> paths = data.getExtras().getStringArrayList("paths");
                     if (paths == null) {
                         return;
                     } else {
-                        StringBuffer result = new StringBuffer();
+                        StringBuilder result = new StringBuilder();
                         for (int i = 0; i < paths.size(); i++) {
                             result.append(paths.get(i));
                         }
@@ -120,7 +122,7 @@ public class HomeActivity extends AppCompatActivity {
         }
         if (resultCode == RESULT_CANCELED) {
             Log.i(TAG, "onActivityResult: ");
-            if (requestCode == 12 & resultCode == Activity.RESULT_CANCELED || requestCode == 81 & resultCode == Activity.RESULT_CANCELED) {
+            if (requestCode == RESULT_MAIN_SINGLE_ALBUM || requestCode == RESULT_VIDEO_SELECTED || requestCode == RESULT_IMAGE_SELECTED) {
                 Log.i(TAG, "onActivityResult: ");
                 Intent intent = new Intent(this, MainAlbumListActivity.class);
                 intent.putExtra(EXTRA_JID, jid);
@@ -128,17 +130,9 @@ public class HomeActivity extends AppCompatActivity {
                 startActivityForResult(intent, RESULT_LOAD_IMAGE);
             }
 
-            if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_CANCELED) {
+            if (requestCode == RESULT_LOAD_IMAGE) {
                 Log.i(TAG, "onActivityResult: ");
             }
-            if (requestCode == 80 && resultCode == RESULT_CANCELED) {
-                Log.i(TAG, "onActivityResult: ");
-                Intent intent = new Intent(this, MainAlbumListActivity.class);
-                intent.putExtra(EXTRA_JID, jid);
-                intent.putExtra(EXTRA_NAME, user);
-                startActivityForResult(intent, RESULT_LOAD_IMAGE);
-            }
-
         }
     }
 }
